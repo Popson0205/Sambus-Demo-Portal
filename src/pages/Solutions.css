@@ -1,0 +1,146 @@
+.page-hero {
+  background: linear-gradient(135deg, var(--sgl-navy-dark) 0%, var(--sgl-navy) 100%);
+  padding: 160px 0 80px;
+  color: white;
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  margin-bottom: 16px;
+}
+
+.page-hero p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.75);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.solutions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 80px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.product-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  overflow: visible;
+  background: white;
+}
+
+.product-card.reverse { direction: rtl; }
+.product-card.reverse > * { direction: ltr; }
+
+.product-info {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.product-icon { font-size: 2.2rem; }
+
+.product-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.product-card h2 {
+  font-size: 1.8rem;
+  color: var(--sgl-navy);
+}
+
+.product-tagline {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sgl-green-dark);
+}
+
+.product-desc {
+  font-size: 0.92rem;
+  color: var(--sgl-text-muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.product-industries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ind-chip {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--sgl-text-muted);
+  background: var(--sgl-gray);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.product-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.product-features {
+  background: var(--sgl-off-white);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-features h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sgl-text-muted);
+  font-weight: 700;
+}
+
+.product-features ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--sgl-text);
+  line-height: 1.5;
+}
+
+.check-icon {
+  color: var(--sgl-green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+@media (max-width: 900px) {
+  .product-card { grid-template-columns: 1fr; }
+  .product-card.reverse { direction: ltr; }
+  .product-info, .product-features { padding: 32px 24px; }
+}

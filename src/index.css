@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow:wght@400;600;700;800&display=swap');
+@import 'leaflet/dist/leaflet.css';
+
+/* ── Sambus Brand Tokens ── */
+:root {
+  --sgl-navy: #0D2B5E;
+  --sgl-navy-light: #1B3A6B;
+  --sgl-navy-dark: #071A3E;
+  --sgl-green: #7DC242;
+  --sgl-green-light: #9BC73A;
+  --sgl-green-dark: #5A9130;
+  --sgl-white: #FFFFFF;
+  --sgl-off-white: #F4F7FB;
+  --sgl-gray: #E8EEF5;
+  --sgl-text: #1A2B45;
+  --sgl-text-muted: #5A6E8A;
+  --sgl-border: rgba(13, 43, 94, 0.12);
+  --sgl-card-bg: rgba(255,255,255,0.96);
+  --sgl-nav-height: 72px;
+  --sgl-radius: 12px;
+  --sgl-radius-lg: 20px;
+  --sgl-shadow: 0 4px 24px rgba(13, 43, 94, 0.10);
+  --sgl-shadow-lg: 0 12px 48px rgba(13, 43, 94, 0.18);
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--sgl-text);
+  background: var(--sgl-off-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Barlow', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--sgl-gray); }
+::-webkit-scrollbar-thumb { background: var(--sgl-navy-light); border-radius: 3px; }
+
+/* ── Utility ── */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(125, 194, 66, 0.12);
+  color: var(--sgl-green-dark);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--sgl-navy);
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--sgl-text-muted);
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sgl-green);
+  color: var(--sgl-navy);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 28px;
+  border-radius: 8px;
+  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(125, 194, 66, 0.3);
+}
+.btn-primary:hover {
+  background: var(--sgl-green-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(125, 194, 66, 0.4);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--sgl-white);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 13px 28px;
+  border-radius: 8px;
+  border: 2px solid rgba(255,255,255,0.4);
+  transition: var(--transition);
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.7);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--sgl-navy);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 2px solid var(--sgl-navy);
+  transition: var(--transition);
+}
+.btn-outline:hover {
+  background: var(--sgl-navy);
+  color: white;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--sgl-card-bg);
+  border-radius: var(--sgl-radius);
+  box-shadow: var(--sgl-shadow);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sgl-shadow-lg);
+}
+
+/* ── Page sections ── */
+.page-section {
+  padding: 100px 0;
+}
+.page-section.alt-bg {
+  background: var(--sgl-white);
+}
