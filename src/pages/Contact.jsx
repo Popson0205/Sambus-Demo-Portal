@@ -126,14 +126,24 @@ export default function Contact() {
                   <span className="info-icon">📍</span>
                   <div>
                     <strong>Headquarters</strong>
-                    <span>Accra, Ghana</span>
+                    <span>F702/1 Salem Avenue, Kuku Hill- Osu.
+                               Accra, Ghana
+                               P. O. Box AN 16701, Accra North
+                               Tel: +233 302 777 127 | +233 202 113 014 | +233 501 353 864</span>
                   </div>
                 </div>
                 <div className="info-item">
                   <span className="info-icon">🏢</span>
                   <div>
                     <strong>Regional Office</strong>
-                    <span>Lagos, Nigeria</span>
+                    <span>Country Offices (Nigeria)
+                          Abuja Office: No. 19 Ebitu Ukiwe street, Jabi,
+                          Abuja, Nigeria
+                          Tel: +234(0) 209 292 2821 | +234(0) 916 371 1111</span>
+                   
+                    <span>Lagos Office: Plot 1601 Adeola Hopewell Street,
+                          Victoria Island, Lagos – Nigeria.
+                          Tel: +234 (0)908 271 5613 | +234(0) 916 300 0022 </span>
                   </div>
                 </div>
               </div>
