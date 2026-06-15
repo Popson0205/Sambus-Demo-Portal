@@ -141,8 +141,7 @@ export default function Contact() {
                           Abuja, Nigeria
                           Tel: +234(0) 209 292 2821 | +234(0) 916 371 1111</span>
                   </div>
-                  
-                  <div>
+                  </div>
                   <div className="info-item">
                   <span className="info-icon">🏢</span>
                   <div>
