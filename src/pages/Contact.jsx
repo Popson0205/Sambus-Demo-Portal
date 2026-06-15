@@ -140,7 +140,9 @@ export default function Contact() {
                           Abuja Office: No. 19 Ebitu Ukiwe street, Jabi,
                           Abuja, Nigeria
                           Tel: +234(0) 209 292 2821 | +234(0) 916 371 1111</span>
-                   
+                  </div>
+                  
+                  <div>
                     <span>Lagos Office: Plot 1601 Adeola Hopewell Street,
                           Victoria Island, Lagos – Nigeria.
                           Tel: +234 (0)908 271 5613 | +234(0) 916 300 0022 </span>
