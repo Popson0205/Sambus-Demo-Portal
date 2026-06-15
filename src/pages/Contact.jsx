@@ -143,6 +143,9 @@ export default function Contact() {
                   </div>
                   
                   <div>
+                  <div className="info-item">
+                  <span className="info-icon">🏢</span>
+                  <div>
                     <span>Lagos Office: Plot 1601 Adeola Hopewell Street,
                           Victoria Island, Lagos – Nigeria.
                           Tel: +234 (0)908 271 5613 | +234(0) 916 300 0022 </span>
