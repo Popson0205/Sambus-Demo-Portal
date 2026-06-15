@@ -12,13 +12,33 @@ L.Icon.Default.mergeOptions({
 })
 
 const SGL_LOCATIONS = [
-  { name: 'Accra, Ghana',            lat: 5.6037,  lng: -0.1870,  type: 'hq',     note: 'Headquarters'   },
-  { name: 'Lagos, Nigeria',          lat: 6.5244,  lng: 3.3792,   type: 'office',  note: 'Nigeria Office' },
-  { name: 'Banjul, Gambia',          lat: 13.4549, lng: -16.5790, type: 'partner', note: 'Partner Office' },
-  { name: 'Libreville, Gabon',       lat: 0.4162,  lng: 9.4673,   type: 'partner', note: 'Partner Office' },
-  { name: 'Monrovia, Liberia',       lat: 6.3156,  lng: -10.8074, type: 'partner', note: 'Partner Office' },
-  { name: 'Freetown, Sierra Leone',  lat: 8.4657,  lng: -13.2317, type: 'partner', note: 'Partner Office' },
-  { name: 'Malabo, Eq. Guinea',      lat: 3.7523,  lng: 8.7742,   type: 'partner', note: 'Partner Office' },
+  {
+    name: 'Sambus Geospatial – HQ',
+    lat: 5.5630189,
+    lng: -0.1856645,
+    type: 'hq',
+    note: 'Headquarters',
+    address: 'F702/1 Salem Avenue, 25 1st Kuku Crescent, Accra, Ghana',
+    phone: '+233 30 277 7127',
+  },
+  {
+    name: 'Sambus Geospatial Nigeria – Lagos',
+    lat: 6.4371742,
+    lng: 3.4287248,
+    type: 'office',
+    note: 'Lagos Office',
+    address: '1610 Adeola Hopewell St, Victoria Island, Lagos, Nigeria',
+    phone: '+234 92922821',
+  },
+  {
+    name: 'Sambus Geospatial – Abuja',
+    lat: 9.0650459,
+    lng: 7.4258754,
+    type: 'office',
+    note: 'Abuja Office',
+    address: '19 Ebitu Ukiwe St, Jabi, Abuja, FCT, Nigeria',
+    phone: '+234 92922821',
+  },
 ]
 
 // ── Helper: append ?embed=true to ArcGIS dashboard URLs ──────────────────────
@@ -499,11 +519,11 @@ export default function Demos() {
             <div className="container">
               <div className="map-header">
                 <h2>Sambus Geospatial Coverage</h2>
-                <p>Our presence across West Africa — 7 countries, one geospatial vision.</p>
+                <p>Our operational offices — Accra (HQ), Lagos, and Abuja.</p>
               </div>
               <div className="map-wrapper">
                 <MapContainer
-                  center={[7.0, -2.0]}
+                  center={[7.2, 3.5]}
                   zoom={5}
                   style={{ height: '440px', width: '100%', borderRadius: '16px' }}
                   scrollWheelZoom={false}
@@ -527,16 +547,17 @@ export default function Demos() {
                       <Popup>
                         <div className="map-popup">
                           <strong>{loc.name}</strong>
-                          <span>{loc.note}</span>
+                          <span className="popup-note">{loc.note}</span>
+                          <span className="popup-address">{loc.address}</span>
+                          {loc.phone && <span className="popup-phone">{loc.phone}</span>}
                         </div>
                       </Popup>
                     </CircleMarker>
                   ))}
                 </MapContainer>
                 <div className="map-legend">
-                  <span><i style={{ background: '#7DC242' }} /> Headquarters</span>
-                  <span><i style={{ background: '#9BC73A' }} /> Regional Office</span>
-                  <span><i style={{ background: '#4A8FDB' }} /> Partner Office</span>
+                  <span><i style={{ background: '#7DC242' }} /> Headquarters – Accra</span>
+                  <span><i style={{ background: '#4A8FDB' }} /> Operational Office</span>
                 </div>
               </div>
             </div>
