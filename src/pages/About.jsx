@@ -17,7 +17,7 @@ export default function About() {
         <div className="container">
           <span className="section-tag">🏢 About Us</span>
           <h1>About Sambus Geospatial</h1>
-          <p>
+          <p style="text-align: justify;">
 
             Sambus Geospatial  is a Geographic Information System (GIS) and mapping company. 
 We are the sole distributor of ESRI, ENVI, Trimble and WINGTRA Drones with exclusive representation 
@@ -42,7 +42,7 @@ and operational awareness and a robust organizational structure.
           <div className="story-text">
             <span className="section-tag">Our Story</span>
             <h2 className="section-title">Pioneering Location Intelligence in West Africa</h2>
-            <p>
+            <p style="text-align: justify;">
               Sambus Geospatial, formerly the GIS/GPS Division of Sambus Company Limited (SCL hereafter) is an applications 
   development firm that integrates technologies and provides a range of geospatial solutions. 
   Our history started over 33 years ago when the late Mr Samuel Aboah founded SCL. Mr. Aboah, 
