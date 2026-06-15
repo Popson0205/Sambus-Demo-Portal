@@ -18,8 +18,20 @@ export default function About() {
           <span className="section-tag">🏢 About Us</span>
           <h1>About Sambus Geospatial</h1>
           <p>
-            West Africa's leading geospatial company — official Esri distributor,
-            authorized for Trimble, NV5, and Wingtra — serving 7 countries.
+
+            Sambus Geospatial  is a Geographic Information System (GIS) and mapping company. 
+We are the sole distributor of ESRI, ENVI, Trimble and WINGTRA Drones with exclusive representation 
+in Ghana, Nigeria, Gambia, Gabon, Sierra Leone, Equatorial Guinea, and Liberia. We develop applications 
+that can integrate technologies and provide a range of geospatial solutions and provide sales, 
+innovation, consultancy, and training in the use of mapping and spatial analytics software for desktop, 
+software as a service (SaaS), and enterprise applications. 
+These products deliver location intelligence and meet digital transformation needs for organizations. and individuals.
+
+            Sambus Geospatial has gained substantial experience in the development and implementation of socio-economic 
+and environmental related projects and methodologies using GIS. Many sectors in Ghana and the West African sub-region have 
+benefited immensely from our expertise and technologies through ESRI GIS software installation, project support and capacity building, 
+with the most complete GIS platform – ArcGIS for Mapping, data management, planning and analysis, workforce optimization, 
+and operational awareness and a robust organizational structure.
           </p>
         </div>
       </div>
@@ -31,10 +43,19 @@ export default function About() {
             <span className="section-tag">Our Story</span>
             <h2 className="section-title">Pioneering Location Intelligence in West Africa</h2>
             <p>
-              Sambus Geospatial Limited was founded with a singular mission: to make world-class
-              geospatial technology accessible and applicable across West Africa. As the official
-              Esri distributor for the region, we have built the technical expertise, local knowledge,
-              and regional partnerships to deliver transformative GIS solutions.
+              Sambus Geospatial, formerly the GIS/GPS Division of Sambus Company Limited (SCL hereafter) is an applications 
+  development firm that integrates technologies and provides a range of geospatial solutions. 
+  Our history started over 33 years ago when the late Mr Samuel Aboah founded SCL. Mr. Aboah, 
+  who was friends with the legendary founder of ESRI Jack Dangermond, witnessed first-hand the 
+  contributions computer-based mapping and analysis made to geographic planning and environmental 
+  science in the USA and decided to introduce the technology in Ghana. Sambus is a shortened form of Samuel’s 
+  (i.e. Sam) business (i.e. bus), and the company has come a long way since its inception as Sam’s vision, 
+  and legacy lives on. The founding of SGL was an uphill climb, and as is often the case for visionaries who take the untrodden path, 
+  Mr. Aboah did not have it easy in starting-up. Before SGL, he started off selling personal computers to  Makola women after he resigned 
+  from his job at Mobil. It was his philosophy never to stock and sell but rather sell first and deliver to the client; 
+  a philosophy still pervasive in several aspects of our current operations. Such an innovative approach to selling computers 
+  at the time was not straightforward, but he persevered. Expanding business to include geospatial solutions was even harder, 
+  but he never gave up.
             </p>
             <p style={{ marginTop: '16px' }}>
               From national land administration systems to real-time utility network management,
