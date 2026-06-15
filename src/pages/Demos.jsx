@@ -4,7 +4,6 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import './Demos.css'
 
-// Fix Leaflet default icon issue with Vite
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
@@ -13,17 +12,176 @@ L.Icon.Default.mergeOptions({
 })
 
 const SGL_LOCATIONS = [
-  { name: 'Accra, Ghana', lat: 5.6037, lng: -0.1870, type: 'hq', note: 'Headquarters' },
-  { name: 'Lagos, Nigeria', lat: 6.5244, lng: 3.3792, type: 'office', note: 'Nigeria Office' },
-  { name: 'Banjul, Gambia', lat: 13.4549, lng: -16.5790, type: 'partner', note: 'Partner Office' },
-  { name: 'Libreville, Gabon', lat: 0.4162, lng: 9.4673, type: 'partner', note: 'Partner Office' },
-  { name: 'Monrovia, Liberia', lat: 6.3156, lng: -10.8074, type: 'partner', note: 'Partner Office' },
-  { name: 'Freetown, Sierra Leone', lat: 8.4657, lng: -13.2317, type: 'partner', note: 'Partner Office' },
-  { name: 'Malabo, Equatorial Guinea', lat: 3.7523, lng: 8.7742, type: 'partner', note: 'Partner Office' },
+  { name: 'Accra, Ghana',            lat: 5.6037,  lng: -0.1870,  type: 'hq',     note: 'Headquarters'   },
+  { name: 'Lagos, Nigeria',          lat: 6.5244,  lng: 3.3792,   type: 'office',  note: 'Nigeria Office' },
+  { name: 'Banjul, Gambia',          lat: 13.4549, lng: -16.5790, type: 'partner', note: 'Partner Office' },
+  { name: 'Libreville, Gabon',       lat: 0.4162,  lng: 9.4673,   type: 'partner', note: 'Partner Office' },
+  { name: 'Monrovia, Liberia',       lat: 6.3156,  lng: -10.8074, type: 'partner', note: 'Partner Office' },
+  { name: 'Freetown, Sierra Leone',  lat: 8.4657,  lng: -13.2317, type: 'partner', note: 'Partner Office' },
+  { name: 'Malabo, Eq. Guinea',      lat: 3.7523,  lng: 8.7742,   type: 'partner', note: 'Partner Office' },
 ]
 
-// ── CATEGORY DATA ─────────────────────────────────────────────────────────────
+// ── Helper: append ?embed=true to ArcGIS dashboard URLs ──────────────────────
+const embed = (url) => url ? `${url}?embed=true` : null
+
+// ── CATEGORIES & SOLUTIONS ────────────────────────────────────────────────────
 const CATEGORIES = [
+  {
+    id: 'security',
+    icon: '🔒',
+    title: 'Security',
+    description: 'Situational awareness, patrol monitoring, and operational dashboards for defence and security agencies.',
+    color: '#DC2626',
+    solutions: [
+      {
+        id: 'security-sitrep',
+        title: 'Unified Armed Forces Operational Situation Report Dashboard',
+        description: 'Command-centre situational awareness dashboard for unified armed forces — tracking operational status, incidents, and field unit positions in real time.',
+        tags: ['ArcGIS Dashboards', 'Defence', 'Situational Awareness', 'Real-time'],
+        status: 'live',
+        iframeUrl: embed('https://sambusgeospatial.maps.arcgis.com/apps/dashboards/b23b7135620749d09706d74a81278561'),
+      },
+      {
+        id: 'navy-patrol',
+        title: 'Nigeria Navy Patrol Monitoring Dashboard',
+        description: 'Live GIS-powered monitoring of naval patrol routes, vessel positions, and maritime zone coverage across Nigerian waters.',
+        tags: ['ArcGIS Dashboards', 'Maritime', 'Patrol Tracking', 'Navy'],
+        status: 'live',
+        iframeUrl: embed('https://sambusgeospatial.maps.arcgis.com/apps/dashboards/d5ccd3311c1544fd9a285e32dbb151d6'),
+      },
+      {
+        id: 'border-surveillance',
+        title: 'Border & Perimeter Surveillance',
+        description: 'Sensor fusion with GIS for border monitoring — integrating UAV feeds, camera networks, and patrol tracking on a live map.',
+        tags: ['ArcGIS', 'UAV', 'Sensor Integration'],
+        status: 'coming-soon',
+        iframeUrl: null,
+      },
+      {
+        id: 'incident-mgmt',
+        title: 'Incident Management System',
+        description: 'Spatial incident logging, resource dispatch tracking, and after-action review tools for emergency response teams.',
+        tags: ['ArcGIS Field Maps', 'Mobile', 'Response'],
+        status: 'coming-soon',
+        iframeUrl: null,
+      },
+    ],
+  },
+  {
+    id: 'government',
+    icon: '🏛️',
+    title: 'Government',
+    description: 'Capital project tracking, refugee management, electoral demarcation and citizen-facing geoportals for public sector.',
+    color: '#6B46C1',
+    solutions: [
+      {
+        id: 'oagf-capital',
+        title: 'OAGF Capital Project Dashboard',
+        description: 'Office of the Accountant-General of the Federation — spatial monitoring of capital project disbursements, progress, and performance across Nigeria.',
+        tags: ['ArcGIS Dashboards', 'Capital Projects', 'OAGF', 'Federal Government'],
+        status: 'live',
+        iframeUrl: embed('https://sambusgeospatial.maps.arcgis.com/apps/dashboards/53c4359327a44af58faa470f08479064'),
+      },
+      {
+        id: 'ncfr-refugees',
+        title: 'National Commission for Refugees Dashboard',
+        description: 'Geospatial dashboard for tracking refugee and IDP populations, camp locations, service delivery, and resettlement progress across Nigeria.',
+        tags: ['ArcGIS Dashboards', 'Refugees', 'NCFR', 'Humanitarian'],
+        status: 'live',
+        iframeUrl: embed('https://sambusgeospatial.maps.arcgis.com/apps/dashboards/dff47c5a577e4ddd9ab890495e6bb899'),
+      },
+      {
+        id: 'electoral',
+        title: 'Electoral Boundary Mapping',
+        description: 'Constituency demarcation, voter density analysis, polling station optimization and results visualization.',
+        tags: ['ArcGIS', 'Spatial Statistics', 'Demographics'],
+        status: 'coming-soon',
+        iframeUrl: null,
+      },
+      {
+        id: 'geoportal',
+        title: 'National Geoportal',
+        description: 'Open-data geoportal for sharing national datasets, metadata catalogs, and web GIS services with the public.',
+        tags: ['ArcGIS Hub', 'Open Data', 'SDI'],
+        status: 'coming-soon',
+        iframeUrl: null,
+      },
+    ],
+  },
+  {
+    id: 'utilities',
+    icon: '⚡',
+    title: 'Utilities',
+    description: 'Network monitoring, project tracking, and asset management for electricity, water, and infrastructure.',
+    color: '#7DC242',
+    solutions: [
+      {
+        id: 'eng-project-monitoring',
+        title: 'Engineering Project Monitoring & Evaluation Dashboard',
+        description: 'End-to-end spatial tracking of engineering projects — monitoring milestones, contractor performance, and field progress across project sites.',
+        tags: ['ArcGIS Dashboards', 'M&E', 'Engineering', 'Projects'],
+        status: 'live',
+        iframeUrl: embed('https://sambusgeospatial.maps.arcgis.com/apps/dashboards/c5825a45053e42c3b440d8bdc9555730'),
+      },
+      {
+        id: 'ndphc-asset',
+        title: 'Niger Delta Power Holding Company Asset Dashboard',
+        description: 'Comprehensive asset registry and spatial dashboard for NDPHC — tracking generation assets, substations, and transmission infrastructure.',
+        tags: ['ArcGIS Dashboards', 'Power', 'NDPHC', 'Asset Management'],
+        status: 'live',
+        iframeUrl: embed('https://sambusgeospatial.maps.arcgis.com/apps/dashboards/81784b5ccdd446bd81eba51764bdcfa3'),
+      },
+      {
+        id: 'ndphc-maintenance',
+        title: 'Routine Maintenance Dashboard – NDPHC',
+        description: 'Planned and corrective maintenance tracking for NDPHC assets — scheduling, completion rates, and fault history mapped spatially.',
+        tags: ['ArcGIS Dashboards', 'Maintenance', 'NDPHC', 'Power Grid'],
+        status: 'live',
+        iframeUrl: embed('https://sambusgeospatial.maps.arcgis.com/apps/dashboards/e7cb66ab717a4018b3b6f04cd8071cc7'),
+      },
+      {
+        id: 'water-network',
+        title: 'Water Network Management',
+        description: 'Pipe network mapping, pressure zone analysis, and maintenance scheduling for water utilities across service areas.',
+        tags: ['ArcGIS Utility Network', 'Water GIS', 'Field Maps'],
+        status: 'coming-soon',
+        iframeUrl: null,
+      },
+    ],
+  },
+  {
+    id: 'agriculture',
+    icon: '🌾',
+    title: 'Agriculture',
+    description: 'Biosecurity planning, crop monitoring, soil analysis and farm management using satellite imagery and GIS tools.',
+    color: '#5A9130',
+    solutions: [
+      {
+        id: 'biosecurity',
+        title: 'Biosecurity Planning & Monitoring Dashboard',
+        description: 'National biosecurity risk mapping — tracking disease outbreak zones, livestock movement corridors, and intervention coverage across regions.',
+        tags: ['ArcGIS Dashboards', 'Biosecurity', 'Agriculture', 'Risk Mapping'],
+        status: 'live',
+        iframeUrl: embed('https://sambusgeospatial.maps.arcgis.com/apps/dashboards/7aad26ade91c495ab891eea346628e1d'),
+      },
+      {
+        id: 'crop-monitor',
+        title: 'Agricultural Field Monitoring',
+        description: 'Crop health analysis using satellite imagery, NDVI indices, and seasonal change detection for farm advisories.',
+        tags: ['ENVI', 'Remote Sensing', 'NDVI'],
+        status: 'coming-soon',
+        iframeUrl: null,
+      },
+      {
+        id: 'soil-analysis',
+        title: 'Soil & Terrain Analysis',
+        description: 'Digital elevation models combined with soil sample data to generate fertility maps and drainage risk assessments.',
+        tags: ['ArcGIS Pro', 'DEM', 'Spatial Analysis'],
+        status: 'coming-soon',
+        iframeUrl: null,
+      },
+    ],
+  },
   {
     id: 'land',
     icon: '🏗️',
@@ -36,96 +194,22 @@ const CATEGORIES = [
         title: 'Land Parcel Management System',
         description: 'Interactive cadastral mapping with parcel search, ownership history, and zoning overlays. Full integration with national land registries.',
         tags: ['ArcGIS', 'Web GIS', 'Cadastre'],
-        status: 'live',
-        iframeUrl: 'https://www.arcgis.com/apps/mapviewer/index.html',
+        status: 'coming-soon',
+        iframeUrl: null,
       },
       {
-        id: 'land-info',
+        id: 'lims',
         title: 'Land Information Management System (LIMS)',
         description: 'Comprehensive LIMS for tracking land transactions, ownership transfers, encumbrances and legal disputes with spatial visualization.',
         tags: ['ArcGIS Enterprise', 'LIMS', 'Spatial DB'],
-        status: 'live',
-        iframeUrl: 'https://www.esri.com/en-us/about/about-esri/overview',
+        status: 'coming-soon',
+        iframeUrl: null,
       },
       {
         id: 'valuation',
         title: 'Property Valuation & Rating',
         description: 'Mass appraisal system integrating property attributes, comparable sales, and spatial market data for fair value assessments.',
         tags: ['ArcGIS Pro', 'Valuation', 'Analytics'],
-        status: 'live',
-        iframeUrl: 'https://storymaps.arcgis.com/',
-      },
-      {
-        id: 'tenure',
-        title: 'Tenure Security Dashboard',
-        description: 'Track tenure formalization progress, community boundaries, and certificate issuance across districts with real-time dashboards.',
-        tags: ['ArcGIS Dashboards', 'Tenure', 'Reports'],
-        status: 'coming-soon',
-        iframeUrl: null,
-      },
-    ],
-  },
-  {
-    id: 'utilities',
-    icon: '⚡',
-    title: 'Utilities',
-    description: 'Network monitoring, outage management, and asset tracking for electricity, water, and gas distribution infrastructure.',
-    color: '#7DC242',
-    solutions: [
-      {
-        id: 'utility-network',
-        title: 'Utility Network Dashboard',
-        description: 'Real-time monitoring of electricity distribution networks with outage tracking, fault isolation and asset management.',
-        tags: ['ArcGIS', 'Network Analysis', 'Real-time'],
-        status: 'live',
-        iframeUrl: 'https://www.arcgis.com/apps/mapviewer/index.html',
-      },
-      {
-        id: 'water-network',
-        title: 'Water Network Management',
-        description: 'Pipe network mapping, pressure zone analysis, and maintenance scheduling for water utilities across service areas.',
-        tags: ['ArcGIS Utility Network', 'Water GIS', 'Field Maps'],
-        status: 'live',
-        iframeUrl: 'https://www.esri.com/en-us/industries/water/overview',
-      },
-      {
-        id: 'outage',
-        title: 'Outage & Fault Response System',
-        description: 'Automated outage detection, crew dispatching and customer notification integrated with field mobile teams.',
-        tags: ['ArcGIS', 'Operations Dashboard', 'Mobile'],
-        status: 'coming-soon',
-        iframeUrl: null,
-      },
-    ],
-  },
-  {
-    id: 'agriculture',
-    icon: '🌾',
-    title: 'Agriculture',
-    description: 'Crop monitoring, yield prediction, soil analysis and farm management using satellite imagery and precision agriculture tools.',
-    color: '#5A9130',
-    solutions: [
-      {
-        id: 'crop-monitor',
-        title: 'Agricultural Field Monitoring',
-        description: 'Crop health analysis using satellite imagery, NDVI indices, and seasonal change detection for farm advisories.',
-        tags: ['ENVI', 'Remote Sensing', 'NDVI'],
-        status: 'live',
-        iframeUrl: 'https://www.esri.com/en-us/industries/agriculture/overview',
-      },
-      {
-        id: 'soil-analysis',
-        title: 'Soil & Terrain Analysis',
-        description: 'Digital elevation models combined with soil sample data to generate fertility maps and drainage risk assessments.',
-        tags: ['ArcGIS Pro', 'DEM', 'Spatial Analysis'],
-        status: 'live',
-        iframeUrl: 'https://storymaps.arcgis.com/',
-      },
-      {
-        id: 'yield',
-        title: 'Yield Prediction Platform',
-        description: 'Machine learning–driven crop yield forecasting combining weather data, soil conditions, and historical satellite indices.',
-        tags: ['ENVI', 'ML', 'Sentinel-2'],
         status: 'coming-soon',
         iframeUrl: null,
       },
@@ -143,8 +227,8 @@ const CATEGORIES = [
         title: 'Urban Growth Analysis',
         description: 'Multi-temporal land use change detection and urban sprawl modelling for city and regional planners.',
         tags: ['ArcGIS Pro', 'Change Detection', 'Spatial Analysis'],
-        status: 'live',
-        iframeUrl: 'https://www.arcgis.com/apps/mapviewer/index.html',
+        status: 'coming-soon',
+        iframeUrl: null,
       },
       {
         id: 'zoning',
@@ -168,88 +252,14 @@ const CATEGORIES = [
         title: 'Forest Cover Change Monitor',
         description: 'Deforestation tracking using Sentinel-2 and Landsat imagery with automated alert systems for protected areas.',
         tags: ['ENVI', 'LiDAR', 'Sentinel-2'],
-        status: 'live',
-        iframeUrl: 'https://www.esri.com/en-us/industries/natural-resources/overview',
+        status: 'coming-soon',
+        iframeUrl: null,
       },
       {
         id: 'coastal',
         title: 'Coastal & Wetland Monitoring',
         description: 'Shoreline change analysis, mangrove health mapping, and flood risk modelling for coastal communities.',
         tags: ['ENVI SARscape', 'SAR', 'Coastal GIS'],
-        status: 'live',
-        iframeUrl: 'https://storymaps.arcgis.com/',
-      },
-      {
-        id: 'eia',
-        title: 'Environmental Impact Assessment',
-        description: 'Spatial EIA toolset covering habitat sensitivity mapping, noise/air dispersion modelling and mitigation planning.',
-        tags: ['ArcGIS Pro', 'EIA', 'Modelling'],
-        status: 'coming-soon',
-        iframeUrl: null,
-      },
-    ],
-  },
-  {
-    id: 'government',
-    icon: '🏛️',
-    title: 'Government',
-    description: 'Electoral demarcation, census mapping, public service delivery and citizen-facing geoportals for public sector.',
-    color: '#6B46C1',
-    solutions: [
-      {
-        id: 'electoral',
-        title: 'Electoral Boundary Mapping',
-        description: 'Constituency demarcation, voter density analysis, polling station optimization and results visualization.',
-        tags: ['ArcGIS', 'Spatial Statistics', 'Demographics'],
-        status: 'live',
-        iframeUrl: 'https://www.arcgis.com/apps/mapviewer/index.html',
-      },
-      {
-        id: 'geoportal',
-        title: 'National Geoportal',
-        description: 'Open-data geoportal for sharing national datasets, metadata catalogs, and web GIS services with the public.',
-        tags: ['ArcGIS Hub', 'Open Data', 'SDI'],
-        status: 'coming-soon',
-        iframeUrl: null,
-      },
-    ],
-  },
-  {
-    id: 'security',
-    icon: '🔒',
-    title: 'Security',
-    description: 'Situational awareness, crime mapping, border surveillance, and incident management dashboards for security agencies.',
-    color: '#DC2626',
-    solutions: [
-      {
-        id: 'security-dashboard',
-        title: 'Security Situational Awareness Dashboard',
-        description: 'Real-time incident mapping, threat zone visualization, and command-center dashboards for security operations centers.',
-        tags: ['ArcGIS Dashboards', 'Real-time', 'Operations'],
-        status: 'live',
-        iframeUrl: 'https://www.arcgis.com/apps/dashboards/index.html',
-      },
-      {
-        id: 'crime-map',
-        title: 'Crime Analytics & Hotspot Mapping',
-        description: 'Spatial crime pattern analysis, predictive hotspot modelling, and patrol route optimization for law enforcement agencies.',
-        tags: ['ArcGIS Pro', 'Crime Analysis', 'Spatial Stats'],
-        status: 'live',
-        iframeUrl: 'https://www.esri.com/en-us/industries/public-safety/overview',
-      },
-      {
-        id: 'border',
-        title: 'Border & Perimeter Surveillance',
-        description: 'Sensor fusion with GIS for border monitoring — integrating UAV feeds, camera networks, and patrol tracking on a live map.',
-        tags: ['ArcGIS', 'UAV', 'Sensor Integration'],
-        status: 'coming-soon',
-        iframeUrl: null,
-      },
-      {
-        id: 'incident',
-        title: 'Incident Management System',
-        description: 'Spatial incident logging, resource dispatch tracking, and after-action review tools for emergency response teams.',
-        tags: ['ArcGIS Field Maps', 'Mobile', 'Response'],
         status: 'coming-soon',
         iframeUrl: null,
       },
@@ -257,9 +267,10 @@ const CATEGORIES = [
   },
 ]
 
-// ── IFRAME PLACEHOLDER ────────────────────────────────────────────────────────
+// ── IFRAME EMBED ──────────────────────────────────────────────────────────────
 function DemoIframe({ solution }) {
   const [loaded, setLoaded] = useState(false)
+  const [error, setError] = useState(false)
 
   if (solution.status === 'coming-soon') {
     return (
@@ -267,19 +278,19 @@ function DemoIframe({ solution }) {
         <div className="placeholder-inner">
           <div className="placeholder-icon">🔜</div>
           <h3>Coming Soon</h3>
-          <p>This demo is currently in development and will be available shortly.</p>
+          <p>This demo is currently in development and will be available shortly. Check back soon.</p>
         </div>
       </div>
     )
   }
 
-  if (!solution.iframeUrl || solution.iframeUrl === '#') {
+  if (!solution.iframeUrl) {
     return (
       <div className="iframe-placeholder">
         <div className="placeholder-inner">
           <div className="placeholder-icon">🚧</div>
-          <h3>Demo Loading</h3>
-          <p>Embed URL will be configured by the team. Check back soon.</p>
+          <h3>URL Pending</h3>
+          <p>The embed URL for this demo will be configured shortly.</p>
         </div>
       </div>
     )
@@ -287,20 +298,44 @@ function DemoIframe({ solution }) {
 
   return (
     <div className="iframe-wrapper">
-      {!loaded && (
+      {!loaded && !error && (
         <div className="iframe-loading">
           <div className="loading-spinner" />
-          <span>Loading demo…</span>
+          <span>Loading dashboard…</span>
+        </div>
+      )}
+      {error && (
+        <div className="iframe-error">
+          <div className="placeholder-icon">⚠️</div>
+          <h3>Could not load dashboard</h3>
+          <p>
+            <a href={solution.iframeUrl.replace('?embed=true', '')} target="_blank" rel="noreferrer" className="open-link">
+              Open in ArcGIS →
+            </a>
+          </p>
         </div>
       )}
       <iframe
         src={solution.iframeUrl}
         title={solution.title}
-        className={`demo-iframe ${loaded ? 'loaded' : ''}`}
+        className={`demo-iframe ${loaded ? 'loaded' : ''} ${error ? 'hidden' : ''}`}
         onLoad={() => setLoaded(true)}
-        allow="fullscreen"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+        onError={() => setError(true)}
+        allow="fullscreen; geolocation"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
       />
+      {loaded && (
+        <div className="iframe-toolbar">
+          <a
+            href={solution.iframeUrl.replace('?embed=true', '')}
+            target="_blank"
+            rel="noreferrer"
+            className="open-new-tab"
+          >
+            ↗ Open Full Screen
+          </a>
+        </div>
+      )}
     </div>
   )
 }
@@ -309,7 +344,6 @@ function DemoIframe({ solution }) {
 function SolutionDetail({ solution, category, onBack }) {
   return (
     <div className="solution-detail">
-      {/* Breadcrumb */}
       <div className="detail-breadcrumb">
         <button className="breadcrumb-back" onClick={onBack}>
           ← {category.icon} {category.title}
@@ -318,7 +352,6 @@ function SolutionDetail({ solution, category, onBack }) {
         <span className="breadcrumb-current">{solution.title}</span>
       </div>
 
-      {/* Detail Header */}
       <div className="detail-header">
         <div className="detail-header-left">
           <h2>{solution.title}</h2>
@@ -334,7 +367,6 @@ function SolutionDetail({ solution, category, onBack }) {
         </div>
       </div>
 
-      {/* Iframe Embed */}
       <div className="detail-iframe-section">
         <DemoIframe solution={solution} />
       </div>
@@ -342,16 +374,14 @@ function SolutionDetail({ solution, category, onBack }) {
   )
 }
 
-// ── CATEGORY DETAIL: all solutions grid ──────────────────────────────────────
+// ── CATEGORY DETAIL: solutions grid ──────────────────────────────────────────
 function CategoryDetail({ category, onSelectSolution, onBack }) {
   return (
     <div className="category-detail">
-      {/* Back */}
       <button className="back-btn" onClick={onBack}>
         ← Back to All Categories
       </button>
 
-      {/* Category Header */}
       <div className="cat-detail-header" style={{ borderColor: category.color }}>
         <div className="cat-detail-icon" style={{ background: category.color + '18' }}>
           {category.icon}
@@ -362,7 +392,6 @@ function CategoryDetail({ category, onSelectSolution, onBack }) {
         </div>
       </div>
 
-      {/* Solutions Grid */}
       <div className="solutions-detail-grid">
         {category.solutions.map(sol => (
           <div
@@ -383,7 +412,7 @@ function CategoryDetail({ category, onSelectSolution, onBack }) {
             {sol.status === 'live' && (
               <div className="solution-card-action">
                 <span className="preview-btn" style={{ color: category.color }}>
-                  Preview Demo →
+                  Preview Dashboard →
                 </span>
               </div>
             )}
@@ -434,13 +463,13 @@ export default function Demos() {
           <span className="section-tag">🗺️ Interactive Demos</span>
           <h1>Geospatial Demo Gallery</h1>
           <p>
-            Explore live interactive maps, dashboards, and geospatial applications
-            built on leading platforms — ready for your use case.
+            Explore live interactive dashboards and geospatial applications built on
+            leading platforms — no sign-in required.
           </p>
         </div>
       </div>
 
-      {/* ── SOLUTION DETAIL (deepest level) ── */}
+      {/* Solution detail (deepest level) */}
       {selectedSolution && selectedCategory && (
         <div className="container demos-content">
           <SolutionDetail
@@ -451,7 +480,7 @@ export default function Demos() {
         </div>
       )}
 
-      {/* ── CATEGORY DETAIL (solutions grid) ── */}
+      {/* Category detail (solutions grid) */}
       {selectedCategory && !selectedSolution && (
         <div className="container demos-content">
           <CategoryDetail
@@ -462,7 +491,7 @@ export default function Demos() {
         </div>
       )}
 
-      {/* ── HOME: Map + Category Grid ── */}
+      {/* Home: map + category grid */}
       {!selectedCategory && (
         <>
           {/* West Africa Map */}
@@ -489,8 +518,8 @@ export default function Demos() {
                       center={[loc.lat, loc.lng]}
                       radius={loc.type === 'hq' ? 14 : loc.type === 'office' ? 10 : 7}
                       pathOptions={{
-                        color: loc.type === 'hq' ? '#7DC242' : loc.type === 'office' ? '#9BC73A' : '#4A8FDB',
-                        fillColor: loc.type === 'hq' ? '#7DC242' : loc.type === 'office' ? '#9BC73A' : '#4A8FDB',
+                        color:       loc.type === 'hq' ? '#7DC242' : loc.type === 'office' ? '#9BC73A' : '#4A8FDB',
+                        fillColor:   loc.type === 'hq' ? '#7DC242' : loc.type === 'office' ? '#9BC73A' : '#4A8FDB',
                         fillOpacity: 0.85,
                         weight: 2,
                       }}
@@ -519,7 +548,7 @@ export default function Demos() {
               <div className="demos-header">
                 <h2 className="section-title">Solution Categories</h2>
                 <p className="section-subtitle">
-                  Select a category to explore all live demos and previews within it.
+                  Select a category to explore all live dashboards and previews within it.
                 </p>
               </div>
 
