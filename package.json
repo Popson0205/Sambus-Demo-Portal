@@ -9,11 +9,13 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "node server.js",
-    "dev:full": "concurrently \"bun run dev\" \"node server.js\""
+    "dev:full": "concurrently \"node server.js\" \"vite --host\"",
+    "start": "concurrently \"node server.js\" \"vite --host\""
   },
   "dependencies": {
     "@iconify/react": "^6.0.2",
     "bcryptjs": "^3.0.3",
+    "concurrently": "^10.0.3",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
