@@ -7,10 +7,16 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "node server.js",
+    "dev:full": "concurrently \"bun run dev\" \"node server.js\""
   },
   "dependencies": {
     "@iconify/react": "^6.0.2",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "leaflet": "^1.9.4",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",

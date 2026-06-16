@@ -7,30 +7,36 @@ import Demos from './pages/Demos'
 import CaseStudies from './pages/CaseStudies'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Admin from './pages/Admin'
 import './App.css'
-
-function ScrollToTop() {
-  const { pathname } = window.location
-  // Basic scroll restore on route change handled by BrowserRouter
-  return null
-}
 
 export default function App() {
   return (
     <div className="app">
-      <Navbar />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/solutions" element={<Solutions />} />
-          <Route path="/demos" element={<Demos />} />
-          <Route path="/case-studies" element={<CaseStudies />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </main>
-      <Footer />
+      <Routes>
+        {/* Admin — full-screen, no navbar/footer */}
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/*" element={<Admin />} />
+
+        {/* Public portal */}
+        <Route path="*" element={
+          <>
+            <Navbar />
+            <main>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/solutions" element={<Solutions />} />
+                <Route path="/demos" element={<Demos />} />
+                <Route path="/case-studies" element={<CaseStudies />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<Home />} />
+              </Routes>
+            </main>
+            <Footer />
+          </>
+        } />
+      </Routes>
     </div>
   )
 }
