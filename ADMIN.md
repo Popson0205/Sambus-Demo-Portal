@@ -1,48 +1,40 @@
 # Admin Panel – Sambus Demo Portal
 
 ## Accessing the Admin Panel
+Navigate to `/admin` in the browser.
 
-Navigate to `/admin` in the browser (e.g. `http://localhost:3000/admin`)
+**Login:** Username: `Admin@Demo_Portal` · Password: `Admin123`
+To change credentials, edit `ADMIN_USER` / `ADMIN_PASS` at the top of `server.js`.
 
-**Login credentials:**
-- Username: `Admin@Demo_Portal`
-- Password: `Admin123`
-
-> To change credentials, edit `server.js` — find `ADMIN_USER` and `ADMIN_PASS` near the top.
-
-## Running the Portal
-
-Two processes must run simultaneously:
+## Running Locally (Development)
 
 ```bash
-# Terminal 1 — API server (port 3001)
+# Terminal 1 — API + static file server
 node server.js
 
-# Terminal 2 — Vite dev server (port 3000)
+# Terminal 2 — Vite dev server with hot reload
 bun run dev
 ```
 
-Or use the convenience script:
+Or both at once:
 ```bash
-bash start.sh
+bun run dev:full
 ```
+
+## Deploying to Render
+
+**Build Command:** `bun install && bun run build`
+**Start Command:** `node server.js`
+
+The single `server.js` process serves both the API (`/api/*`) and the
+built React app (`/dist`). No `vite preview` involved — no host blocking issues.
 
 ## Uploading a Solution
 
-1. Go to `/admin` and sign in
+1. Go to `/admin` → Sign In
 2. Click **⬆ Upload Solution**
-3. Fill in:
-   - **Title** — display name shown in the gallery
-   - **Category** — which section it appears under
-   - **Description** — shown on the solution card
-   - **Tags** — comma-separated (e.g. `ArcGIS Dashboards, Real-time`)
-   - **URL** — ArcGIS dashboard URL (`?embed=true` is added automatically)
-4. Click **Upload Solution**
+3. Fill in Title, Category, Description, Tags, URL
+4. Click **Upload Solution** — appears in gallery immediately
 
-The solution appears live in the gallery immediately — no code changes needed.
-
-## Data Storage
-
-All solutions are stored in `solutions.json` at the project root.
-This file is created automatically on first run with the existing seeded solutions.
-Back it up before deploying to a new environment.
+## Data
+Solutions stored in `solutions.json` at project root. Auto-seeded on first run.

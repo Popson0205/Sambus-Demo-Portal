@@ -4,14 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "node server.js",
     "dev:full": "concurrently \"node server.js\" \"vite --host\"",
-    "start": "concurrently \"node server.js\" \"vite --host\"",
-    "start:prod": "node server.js & vite preview --host --port ${PORT:-3000}"
+    "start": "node server.js",
+    "start:prod": "node server.js & vite preview --host --port ${PORT:-3000}",
+    "dev:api": "node server.js"
   },
   "dependencies": {
     "@iconify/react": "^6.0.2",
@@ -24,7 +25,8 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-leaflet": "^5.0.0",
-    "react-router-dom": "^7.17.0"
+    "react-router-dom": "^7.17.0",
+    "sirv-cli": "^3.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

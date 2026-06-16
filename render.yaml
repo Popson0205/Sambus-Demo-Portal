@@ -2,9 +2,9 @@ services:
   - type: web
     name: sambus-demo-portal
     env: node
-    buildCommand: bun install
-    startCommand: node server.js & bun run preview --host --port 3000
+    buildCommand: bun install && bun run build
+    startCommand: node server.js
     envVars:
       - key: PORT
-        value: 3000
+        value: 10000
     autoDeploy: true
