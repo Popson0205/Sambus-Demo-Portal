@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "server": "node server.js",
     "dev:full": "concurrently \"node server.js\" \"vite --host\"",
-    "start": "concurrently \"node server.js\" \"vite --host\""
+    "start": "concurrently \"node server.js\" \"vite --host\"",
+    "start:prod": "node server.js & vite preview --host --port ${PORT:-3000}"
   },
   "dependencies": {
     "@iconify/react": "^6.0.2",

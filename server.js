@@ -16,7 +16,7 @@ const ADMIN_USER = 'Admin@Demo_Portal'
 const ADMIN_PASS = 'Admin123'
 
 // ── Middleware ─────────────────────────────────────────────────────────────
-app.use(cors({ origin: '*', credentials: true }))
+app.use(cors({ origin: true, credentials: true }))
 app.use(express.json())
 
 // ── Auth middleware ────────────────────────────────────────────────────────
